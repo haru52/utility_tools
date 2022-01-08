@@ -3,7 +3,7 @@
 ## Overview
 
 Google が提供している [countries.csv](https://developers.google.com/public-data/docs/canonical/countries_csv) から国名を抜き出し、アルファベット昇順でソートしたテキストファイルを出力します。  
-実行結果は[こちら](https://github.com/haru90/etc/blob/master/country_names.txt)。
+実行結果は[こちら](https://github.com/haru52/etc/blob/master/country_names.txt)。
 
 ## Requirement
 
