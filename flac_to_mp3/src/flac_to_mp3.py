@@ -6,6 +6,7 @@ import os
 import subprocess
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+DEFAULT_OUT_DIR_NAME = 'mp3'
 
 
 def escape(string):
@@ -14,6 +15,8 @@ def escape(string):
 
 def encode(in_dir_path, out_root_dir_path):
     for f in glob.glob(os.path.join(escape(in_dir_path), '*')):
+        if os.path.basename(f) == DEFAULT_OUT_DIR_NAME:
+            continue
         if os.path.isdir(f):
             out_dir_path = os.path.join(out_root_dir_path, os.path.basename(f))
             if not os.path.exists(out_dir_path):
@@ -31,15 +34,35 @@ def encode(in_dir_path, out_root_dir_path):
             print(e)
 
 
+def validate_pathes_are_existing_dirs(pathes):
+    for path in pathes:
+        if not os.path.exists(path):
+            raise click.BadParameter(
+                "This path doesn't exist:\n{}".format(path)
+            )
+        if not os.path.isdir(path):
+            raise click.BadParameter(
+                "This path isn't a directory:\n{}".format(path)
+            )
+
+
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.argument('input_directory_path')
 @click.argument('output_directory_path', default=os.getcwd())
 def main(input_directory_path, output_directory_path):
     """Encode FLAC audio files into MP3 320kbps CBR files"""
 
-    out_dir_path = os.path.join(output_directory_path, os.path.basename(input_directory_path))
+    validate_pathes_are_existing_dirs(
+        [input_directory_path, output_directory_path]
+    )
+
+    in_basename = os.path.basename(input_directory_path)
+    out_dir_path = (
+        os.path.join(output_directory_path, DEFAULT_OUT_DIR_NAME, in_basename)
+        if os.path.abspath(input_directory_path) == os.getcwd()
+        else os.path.join(output_directory_path, in_basename))
     if not os.path.exists(out_dir_path):
-        os.mkdir(out_dir_path)
+        os.makedirs(out_dir_path)
 
     encode(input_directory_path, out_dir_path)
 
