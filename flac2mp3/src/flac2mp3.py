@@ -46,6 +46,10 @@ def validate_pathes_are_existing_dirs(pathes):
             )
 
 
+def is_same_path(path1, path2):
+    return os.path.abspath(path1) == os.path.abspath(path2)
+
+
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.argument('input_directory_path')
 @click.argument('output_directory_path', default=os.getcwd())
@@ -57,10 +61,11 @@ def main(input_directory_path, output_directory_path):
     )
 
     in_basename = os.path.basename(input_directory_path)
+    raw_out_dir_path = os.path.join(output_directory_path, in_basename)
     out_dir_path = (
         os.path.join(output_directory_path, DEFAULT_OUT_DIR_NAME, in_basename)
-        if os.path.abspath(input_directory_path) == os.getcwd()
-        else os.path.join(output_directory_path, in_basename))
+        if is_same_path(input_directory_path, raw_out_dir_path)
+        else raw_out_dir_path)
     if not os.path.exists(out_dir_path):
         os.makedirs(out_dir_path)
 
