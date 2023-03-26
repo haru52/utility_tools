@@ -5,7 +5,7 @@ cd "$(dirname "$0")/../src" || exit 1
 src_path=$(pwd)
 bin_path=$HOME/bin
 mkdir -p "$bin_path"
-ln -sfv "$src_path"/flac_to_mp3.py "$bin_path"/flac2mp3
+ln -sfv "$src_path"/flac2mp3.py "$bin_path"/flac2mp3
 
 if [ "$PATH" = "$bin_path" ] || [ "$PATH" = "${bin_path}/" ]; then
   exit

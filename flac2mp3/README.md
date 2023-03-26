@@ -1,4 +1,4 @@
-# flac_to_mp3.py
+# flac2mp3.py
 
 ## Overview
 
@@ -20,7 +20,7 @@ FLACオーディオファイルをMP3 320kbps CBRに変換するスクリプト�
 ## Usage
 
 ```console
-Usage: flac_to_mp3.py [OPTIONS] INPUT_DIRECTORY_PATH [OUTPUT_DIRECTORY_PATH]
+Usage: flac2mp3 [OPTIONS] INPUT_DIRECTORY_PATH [OUTPUT_DIRECTORY_PATH]
 
   Encode FLAC audio files into MP3 320kbps CBR files
 
