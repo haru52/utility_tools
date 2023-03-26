@@ -1,4 +1,4 @@
-# extract_country_names.rb
+# extract_country_names
 
 ## Overview
 

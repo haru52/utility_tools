@@ -1,21 +1,24 @@
-# flac2mp3.py
+# flac2mp3 (FLAC to MP3)
 
 ## Overview
 
-FLACオーディオファイルをMP3 320kbps CBRに変換するスクリプトです．  
-変換前FLACファイルのメタデータを保持したMP3ファイルを生成します．  
-また，変換前のディレクトリ構造を出力先に保持します．
-
-## Description
-
-- 出力先に同名のファイルが既に存在する場合，エンコードしない
-- FFmpegはLAMEライブラリを用いてFLACをMP3にエンコード
+FLAC オーディオファイルを MP3 320kbps CBR に変換するスクリプトです。このスクリプトは変換前 FLAC ファイルのメタデータを保持した MP3 ファイルを生成します。また、変換前のディレクトリ構造も出力先に保持します。
 
 ## Requirements
 
-- Python 3.6.2 or later
-  - Click (Python library) 6.7 or later（pipやcondaでインストール可能）
-- FFmpeg 4.0.1 or later
+| Tool                                        | Version |
+| ------------------------------------------- | ------- |
+| Python                                      | ^3.11.1 |
+| [Click](https://click.palletsprojects.com/) | ^8.1.3  |
+| FFmpeg                                      | ^5.1.2  |
+
+## Installation
+
+```sh
+git clone git@github.com:haru52/utility_tools.git
+cd utility_tools/flac2mp3
+make
+```
 
 ## Usage
 
@@ -28,11 +31,23 @@ Options:
   -h, --help  Show this message and exit.
 ```
 
-[OUTPUT_DIRECTORY_PATH]を省略した場合，カレントディレクトリを出力先に設定
+`[OUTPUT_DIRECTORY_PATH]` を省略した場合、カレントディレクトリを出力先に設定
+
+## Update
+
+```sh
+cd path/to/utility_tools
+git pull
+```
+
+## Description
+
+- 出力先に同名のファイルが既に存在する場合、エンコードしない
+- FFmpeg は LAME ライブラリを用いて FLAC を MP3 にエンコード
 
 ## License
 
-[MIT License](LICENSE)
+[MIT](LICENSE)
 
 ## Author
 
